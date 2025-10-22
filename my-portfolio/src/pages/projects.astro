@@ -1,0 +1,126 @@
+---
+// src/pages/projects.astro
+import Layout from '../layouts/Layout.astro';
+import { projects } from '../data/projects.js'; // Import project data
+---
+<style>
+	.page-header {
+		text-align: center;
+		margin-bottom: 3rem;
+	}
+	.page-header p {
+		max-width: 600px;
+		margin: 0.5rem auto 0;
+	}
+	.projects-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 1.5rem;
+	}
+
+	/* UPDATED: Card is now a link */
+	.project-card-link {
+		text-decoration: none;
+		color: inherit;
+		display: block;
+		height: 100%;
+	}
+
+	.project-card {
+		background: rgba(30, 41, 59, 0.5);
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
+		border: 1px solid rgba(51, 65, 85, 0.7);
+		border-radius: 16px;
+		box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
+	}
+	.project-card-link:hover .project-card {
+		transform: translateY(-8px);
+		box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+	}
+
+	.project-image {
+		width: 100%;
+		height: 150px;
+		object-fit: cover;
+	}
+	.project-info {
+		padding: 1rem;
+		flex-grow: 1;
+		display: flex;
+		flex-direction: column;
+	}
+	.project-info h3 {
+		margin-top: 0;
+		margin-bottom: 0.5rem;
+		font-size: 1.1rem;
+	}
+	.project-info p {
+		color: var(--text-secondary);
+		flex-grow: 1;
+		margin-bottom: 1rem;
+		font-size: 0.9rem;
+	}
+	.project-tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		margin-top: auto;
+	}
+	.tag {
+		background-color: rgba(51, 65, 85, 0.8);
+		color: var(--text-secondary);
+		padding: 0.2rem 0.6rem;
+		border-radius: 99px;
+		font-size: 0.75rem;
+		font-weight: 500;
+	}
+
+	@media(min-width: 768px) {
+		.projects-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+	@media(min-width: 1024px) {
+		.projects-grid {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+</style>
+
+<Layout title="Projects | Abhinav R">
+	<main>
+		<section>
+			<div class="container">
+				<div class="page-header">
+					<h2>My Projects</h2>
+					<p>A collection of my work in AI, development, and more.</p>
+				</div>
+
+				<div class="projects-grid">
+					<!-- The grid is now generated from your projects.js file -->
+					{projects.map(project => (
+						<a href={`/projects/${project.slug}/`} class="project-card-link">
+							<div class="project-card">
+								<img class="project-image" src={project.image} alt={`Preview of ${project.title}`} onerror={`this.onerror=null;this.src='https://placehold.co/600x400/1e293b/f1f5f9?text=${project.title.replace(' ', '+')}';`} />
+								<div class="project-info">
+									<h3>{project.title}</h3>
+									<p>{project.shortDescription}</p>
+									<div class="project-tags">
+										{project.tags.slice(0, 3).map(tag => <span class="tag">{tag}</span>)}
+									</div>
+								</div>
+							</div>
+						</a>
+					))}
+				</div>
+			</div>
+		</section>
+	</main>
+</Layout>
+

@@ -1,0 +1,167 @@
+---
+// src/components/Header.astro
+---
+<style>
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: var(--header-height);
+        background-color: rgba(15, 23, 42, 0.8); /* Dark, semi-transparent background */
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border-color);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+    }
+
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .logo a {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--text-primary);
+        text-decoration: none;
+    }
+
+    .logo a span {
+        color: var(--accent-color);
+    }
+
+    /* Mobile Menu Toggle Button */
+    .menu-toggle {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 1010;
+    }
+
+    .menu-toggle .icon-bar {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background-color: var(--text-primary);
+        margin: 5px 0;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    
+    .menu-toggle.is-active .icon-bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .menu-toggle.is-active .icon-bar:nth-child(2) {
+        opacity: 0;
+    }
+    .menu-toggle.is-active .icon-bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+
+    /* Mobile Styles */
+    @media (max-width: 767px) {
+        .menu-toggle {
+            display: block;
+        }
+        
+        nav {
+            display: none;
+            position: absolute;
+            top: var(--header-height);
+            left: 0;
+            width: 100%;
+            background-color: rgba(15, 23, 42, 0.95);
+            padding: 1rem 0;
+        }
+
+        nav.is-active {
+            display: block;
+        }
+
+        nav ul {
+            list-style: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            display: flex;
+        }
+    }
+
+
+    /* Desktop Styles */
+    nav ul {
+        list-style: none;
+        display: flex;
+        gap: 1.5rem;
+    }
+    
+    nav a {
+        color: var(--text-secondary);
+        font-weight: 600;
+        text-decoration: none;
+        padding: 0.5rem 0;
+        position: relative;
+    }
+
+    nav a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--accent-color);
+        transition: width 0.3s ease;
+    }
+
+    nav a:hover,
+    nav a.active {
+        color: var(--text-primary);
+    }
+    
+    nav a:hover::after,
+    nav a.active::after {
+        width: 100%;
+    }
+
+</style>
+
+<header>
+    <div class="container header-container">
+        <div class="logo">
+            <a href="/">AR<span>.</span></a>
+        </div>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <nav id="main-nav">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/projects">Projects</a></li>
+                <li><a href="/portfolio">Portfolio</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const mainNav = document.getElementById('main-nav');
+
+    if (menuToggle && mainNav) {
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('is-active');
+            mainNav.classList.toggle('is-active');
+        });
+    }
+</script>
+

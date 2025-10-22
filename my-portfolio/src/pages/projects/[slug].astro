@@ -1,0 +1,111 @@
+---
+// src/pages/projects/[slug].astro
+import Layout from '../../layouts/Layout.astro';
+import { projects } from '../../data/projects.js'; // We'll create this file next
+
+// This function tells Astro which pages to build
+export async function getStaticPaths() {
+  return projects.map(project => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+---
+<style>
+	.project-header {
+		text-align: center;
+		padding: 4rem 0 2rem;
+	}
+	.project-header h1 {
+		margin-bottom: 0.5rem;
+	}
+	.project-header p {
+		font-size: 1.125rem;
+		max-width: 65ch; /* Optimal reading width */
+		margin: 0 auto;
+		color: var(--text-secondary);
+	}
+	.project-image-container {
+		margin: 2rem 0;
+	}
+	.project-image {
+		width: 100%;
+		max-width: 900px;
+		margin: 0 auto;
+		display: block;
+		border-radius: 16px;
+		box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+		border: 1px solid var(--border-color);
+	}
+	.project-content {
+		max-width: 800px;
+		margin: 2rem auto;
+	}
+	.project-content h2 {
+		margin-top: 3rem;
+		margin-bottom: 1rem;
+		border-bottom: 1px solid var(--border-color);
+		padding-bottom: 0.5rem;
+	}
+	.tags-container {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin: 2rem 0;
+	}
+	.tag {
+		background-color: rgba(51, 65, 85, 0.8);
+		color: var(--text-secondary);
+		padding: 0.35rem 1rem;
+		border-radius: 99px;
+		font-size: 0.9rem;
+		font-weight: 500;
+	}
+	.project-links {
+		display: flex;
+		justify-content: center;
+		gap: 1.5rem;
+		margin-top: 4rem;
+	}
+	.back-link {
+		display: inline-block;
+		margin-top: 4rem;
+		text-align: center;
+	}
+</style>
+
+<Layout title={`${project.title} | Abhinav R`}>
+	<main>
+		<div class="container">
+			<header class="project-header">
+				<h1>{project.title}</h1>
+				<p>{project.shortDescription}</p>
+			</header>
+
+			<div class="project-image-container">
+				<img src={project.image} alt={`Showcase image for ${project.title}`} class="project-image" onerror={`this.onerror=null;this.src='https://placehold.co/900x500/1e293b/f1f5f9?text=${project.title.replace(' ', '+')}';`}>
+			</div>
+
+			<div class="project-content">
+				<h2>About The Project</h2>
+				<p>{project.longDescription}</p>
+
+				<h2>Technologies Used</h2>
+				<div class="tags-container">
+					{project.tags.map(tag => <span class="tag">{tag}</span>)}
+				</div>
+
+				<div class="project-links">
+					{project.liveLink && <a href={project.liveLink} class="btn" target="_blank" rel="noopener noreferrer">Live Demo</a>}
+					{project.codeLink && <a href={project.codeLink} class="btn btn-secondary" target="_blank" rel="noopener noreferrer">View Code</a>}
+				</div>
+			</div>
+
+			<div class="back-link">
+				<a href="/projects">&larr; Back to All Projects</a>
+			</div>
+		</div>
+	</main>
+</Layout>

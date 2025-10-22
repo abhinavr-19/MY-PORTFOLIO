@@ -1,0 +1,125 @@
+---
+// src/pages/index.astro
+import Layout from '../layouts/Layout.astro';
+---
+<style>
+	/* Hero Section */
+	.hero {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		padding: 4rem 0;
+	}
+
+	.hero-text {
+		max-width: 600px;
+	}
+
+	.hero-text .tagline {
+		color: var(--accent-color);
+		font-weight: 600;
+		margin-bottom: 0.5rem;
+	}
+	.hero-text .bio {
+		font-size: 1.1rem;
+		margin: 1rem 0 2rem;
+	}
+
+	.hero-image {
+		margin-top: 2rem;
+	}
+
+	.hero-image img {
+		width: 180px;
+		height: 180px;
+		border-radius: 50%;
+		border: 5px solid var(--accent-color);
+		box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+	}
+
+	/* Section Content - Increased specificity to ensure centering */
+	main section .section-content {
+		text-align: center;
+		max-width: 700px;
+		margin: 0 auto;
+	}
+
+	main section .section-content h2 {
+		margin-bottom: 1rem;
+	}
+	main section .section-content p {
+		margin-bottom: 2rem;
+	}
+
+	@media(min-width: 768px) {
+		.hero {
+			flex-direction: row;
+			text-align: left;
+			justify-content: space-between;
+			gap: 2rem;
+			padding: 6rem 0;
+		}
+		.hero-text {
+			order: 1;
+		}
+		.hero-image {
+			order: 2;
+			margin-top: 0;
+		}
+		.hero-image img {
+			width: 220px;
+			height: 220px;
+		}
+	}
+</style>
+
+<Layout title="Abhinav R | AI Engineer, Designer, Entrepreneur">
+	<main>
+		<!-- Hero Section -->
+		<section class="hero-section">
+			<div class="container">
+				<div class="hero">
+					<div class="hero-text">
+						<h1>Abhinav R</h1>
+						<p class="tagline">AI Engineer | Designer | Entrepreneur</p>
+						<p class="bio">
+							“I’m a 3rd-year B.Tech Computer Science student specializing in Artificial Intelligence and Machine Learning. I build AI-powered apps, design creative digital experiences, and turn ideas into real-world products.”
+						</p>
+						<a href="/contact" class="button">Get In Touch</a>
+					</div>
+					<div class="hero-image">
+						<!-- IMPORTANT: Place your profile photo in /public/images/profile.jpg -->
+						<img src="/images/profile.jpg" alt="Abhinav R" onerror="this.onerror=null;this.src='https://placehold.co/400x400/1e2sd93b/f1f5f9?text=AR';">
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Recent Projects Section -->
+		<!-- Removed 'alt-bg' class to make background transparent -->
+		<section>
+			<div class="container">
+				<div class="section-content">
+					<h2>Recent Projects</h2>
+					<p>Here's a glimpse of what I've been working on. These projects showcase my skills in AI, web development, and design. Check out the full list for more details.</p>
+					<a href="/projects" class="button">View All Projects</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- Design Portfolio Section -->
+		<!-- Removed 'alt-bg' class to make background transparent -->
+		<section>
+			<div class="container">
+				<div class="section-content">
+					<h2>Design Portfolio</h2>
+					<p>Beyond code, I have a passion for design. This section highlights some of my creative work, from UI/UX mockups to branding concepts.</p>
+					<a href="/portfolio" class="button">Explore Portfolio</a>
+				</div>
+			</div>
+		</section>
+
+	</main>
+</Layout>
+

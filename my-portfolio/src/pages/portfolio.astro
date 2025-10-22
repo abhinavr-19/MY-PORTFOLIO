@@ -1,0 +1,151 @@
+---
+// src/pages/portfolio.astro
+import Layout from '../layouts/Layout.astro';
+---
+
+<style>
+/* Using the same styles as the Projects page for consistency */
+    .page-header {
+        text-align: center;
+        padding: 2rem 0;
+    }
+    .page-header h1 {
+        font-size: 2.5rem;
+    }
+
+    .portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5rem;
+        padding-bottom: 1rem;
+    }
+
+    .portfolio-item {
+        background-color: var(--surface-color);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .portfolio-item img {
+        width: 100%;
+        display: block;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+    }
+
+    .portfolio-item-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(15,23,42,0.9) 0%, rgba(15,23,42,0) 60%);
+        display: flex;
+        align-items: flex-end;
+        padding: 1.5rem;
+        opacity: 1;
+        transition: opacity 0.4s ease;
+    }
+    
+    .portfolio-item h3 {
+        color: var(--text-primary);
+        transform: translateY(20px);
+        opacity: 0;
+        transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+
+    .portfolio-item:hover img {
+        transform: scale(1.05);
+    }
+    .portfolio-item:hover .portfolio-item-overlay {
+        background: linear-gradient(to top, rgba(15,23,42,0.95) 0%, rgba(15,23,42,0.1) 70%);
+    }
+    .portfolio-item:hover h3 {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .cta-section {
+        text-align: center;
+        padding: 2rem 0 3rem 0;
+    }
+
+    @media (min-width: 768px) {
+        .page-header {
+             padding: 4rem 0 2rem;
+        }
+        .page-header h1 {
+            font-size: 3rem;
+        }
+        .portfolio-grid {
+            gap: 2rem;
+            padding-bottom: 2rem;
+        }
+        .cta-section {
+             padding: 2rem 0 4rem 0;
+        }
+    }
+</style>
+
+<Layout title="Portfolio | Abhinav R">
+    <div class="container">
+        <div class="page-header">
+            <h1>Design Portfolio</h1>
+            <p>A selection of my creative and design work.</p>
+        </div>
+        
+        <div class="portfolio-grid">
+            <!-- Item 1 -->
+            <a href="#" class="portfolio-item">
+                <img src="/images/portfolio-1.webp" alt="Portfolio Item 1" onerror="this.onerror=null;this.src='https://placehold.co/800x600/1e293b/f1f5f9?text=Branding+Concept';">
+                <div class="portfolio-item-overlay">
+                    <h3>IE MOVIE</h3>
+                </div>
+            </a>
+            <!-- Item 2 -->
+            <a href="#" class="portfolio-item">
+                <img src="/images/portfolio-2.webp" alt="Portfolio Item 2" onerror="this.onerror=null;this.src='https://placehold.co/800x600/1e293b/f1f5f9?text=UI/UX+Mockup';">
+                <div class="portfolio-item-overlay">
+                    <h3>FRIDAY TRIP MOVIE</h3>
+                </div>
+            </a>
+             <!-- Item 3 -->
+            <a href="#" class="portfolio-item">
+                <img src="/images/portfolio-3.webp" alt="Portfolio Item 3" onerror="this.onerror=null;this.src='https://placehold.co/800x600/1e293b/f1f5f9?text=App+Design';">
+                <div class="portfolio-item-overlay">
+                    <h3>SPORTS CONCEPT DESIGN</h3>
+                </div>
+            </a>
+             <!-- Item 4 -->
+            <a href="#" class="portfolio-item">
+                <img src="/images/portfolio-4.webp" alt="Portfolio Item 4" onerror="this.onerror=null;this.src='https://placehold.co/800x600/1e293b/f1f5f9?text=Web+Banner';">
+                <div class="portfolio-item-overlay">
+                    <h3>ALBUM COVER</h3>
+                </div>
+            </a>
+            <!-- Item 5 -->
+            <a href="#" class="portfolio-item">
+                <img src="/images/portfolio-5.webp" alt="Portfolio Item 5" onerror="this.onerror=null;this.src='https://placehold.co/800x600/1e293b/f1f5f9?text=Logo+Design';">
+                <div class="portfolio-item-overlay">
+                    <h3>DIGITAL VILLAGE MOVIE</h3>
+                </div>
+            </a>
+            <!-- Item 6 -->
+            <a href="#" class="portfolio-item">
+                <img src="/images/portfolio-6.webp" alt="Portfolio Item 6" onerror="this.onerror=null;this.src='https://placehold.co/800x600/1e293b/f1f5f9?text=Iconography';">
+                <div class="portfolio-item-overlay">
+                    <h3>ILLUSTRATION</h3>
+                </div>
+            </a>
+        </div>
+
+        <!-- Call to Action Button Section -->
+        <div class="cta-section">
+            <!-- IMPORTANT: Replace # with your actual Google Drive link -->
+            <a href="https://drive.google.com/file/d/1xGqgBwYzqA4Y9UOJV9_HIIf_-uWmoY_h/view?usp=sharing" class="button" target="_blank" rel="noopener noreferrer">
+                View Full Portfolio
+            </a>
+        </div>
+    </div>
+</Layout>
+
