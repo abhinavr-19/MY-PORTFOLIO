@@ -2,124 +2,161 @@
 // src/pages/index.astro
 import Layout from '../layouts/Layout.astro';
 ---
+
 <style>
 	/* Hero Section */
 	.hero {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		text-align: center;
 		padding: 4rem 0;
 	}
-
+	.hero-content {
+		display: flex;
+		flex-direction: column; /* Stacks items vertically on mobile */
+		align-items: center;
+		text-align: center;
+		gap: 2rem;
+		min-height: 70vh;
+		justify-content: center;
+	}
 	.hero-text {
 		max-width: 600px;
+		order: 2; /* UPDATED: Text comes second on mobile */
 	}
-
-	.hero-text .tagline {
-		color: var(--accent-color);
-		font-weight: 600;
-		margin-bottom: 0.5rem;
-	}
-	.hero-text .bio {
-		font-size: 1.1rem;
-		margin: 1rem 0 2rem;
-	}
-
-	.hero-image {
-		margin-top: 2rem;
-	}
-
-	.hero-image img {
-		width: 180px;
-		height: 180px;
-		border-radius: 50%;
-		border: 5px solid var(--accent-color);
-		box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
-	}
-
-	/* Section Content - Increased specificity to ensure centering */
-	main section .section-content {
-		text-align: center;
-		max-width: 700px;
-		margin: 0 auto;
-	}
-
-	main section .section-content h2 {
+	.hero-text h1 {
+		font-size: 3rem;
+		line-height: 1.1;
 		margin-bottom: 1rem;
+		background: -webkit-linear-gradient(45deg, #f9f8ffff, #ffe9f5ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
 	}
-	main section .section-content p {
+	.tagline {
+		font-size: 1.25rem;
+		font-weight: 500;
+		color: var(--text-secondary);
+		margin-bottom: 1.5rem;
+	}
+	.hero-text p {
+		font-size: 1.125rem;
 		margin-bottom: 2rem;
 	}
 
+	.hero-image {
+		width: 250px;
+		height: 250px;
+		order: 1; /* UPDATED: Image comes first on mobile */
+	}
+	.hero-image img {
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
+		object-fit: cover;
+		/* Glowing effect */
+		border: 4px solid rgba(155, 0, 245, 0.79);
+		box-shadow:
+			0 0 15px rgba(167, 139, 250, 0.5),
+			0 0 30px rgba(167, 139, 250, 0.3),
+			0 0 60px rgba(167, 139, 250, 0.2);
+		animation: pulse 4s infinite ease-in-out;
+	}
+
+	@keyframes pulse {
+		0% {
+			box-shadow:
+				0 0 15px rgba(167, 139, 250, 0.5),
+				0 0 30px rgba(167, 139, 250, 0.3),
+				0 0 60px rgba(167, 139, 250, 0.2);
+		}
+		50% {
+			box-shadow:
+				0 0 25px rgba(167, 139, 250, 0.7),
+				0 0 45px rgba(167, 139, 250, 0.5),
+				0 0 80px rgba(167, 139, 250, 0.3);
+		}
+		100% {
+			box-shadow:
+				0 0 15px rgba(167, 139, 250, 0.5),
+				0 0 30px rgba(167, 139, 250, 0.3),
+				0 0 60px rgba(167, 139, 250, 0.2);
+		}
+	}
+
+	/* Other Sections */
+	.home-section {
+		padding: 5rem 0;
+		text-align: center;
+	}
+	.home-section h2 {
+		margin-bottom: 1rem;
+	}
+	.home-section p {
+		max-width: 600px;
+		margin: 0 auto 2rem;
+		color: var(--text-secondary);
+	}
+
+	/* Responsive Styles */
 	@media(min-width: 768px) {
-		.hero {
-			flex-direction: row;
+		.hero-content {
+			flex-direction: row; /* Side-by-side on desktop */
 			text-align: left;
 			justify-content: space-between;
-			gap: 2rem;
-			padding: 6rem 0;
+			gap: 3rem;
 		}
 		.hero-text {
-			order: 1;
+			max-width: 50%;
+			order: 1; /* UPDATED: Text comes first on desktop */
 		}
 		.hero-image {
-			order: 2;
-			margin-top: 0;
+			max-width: 40%;
+			width: 300px; /* Slightly larger on desktop */
+			height: 300px;
+			order: 2; /* UPDATED: Image comes second on desktop */
 		}
-		.hero-image img {
-			width: 220px;
-			height: 220px;
+		.hero-text h1 {
+			font-size: 3.5rem;
 		}
 	}
 </style>
 
-<Layout title="Abhinav R | AI Engineer, Designer, Entrepreneur">
+<Layout title="Abhinav R | AI Engineer & Designer">
 	<main>
 		<!-- Hero Section -->
-		<section class="hero-section">
+		<section class="hero">
 			<div class="container">
-				<div class="hero">
+				<div class="hero-content">
 					<div class="hero-text">
 						<h1>Abhinav R</h1>
 						<p class="tagline">AI Engineer | Designer | Entrepreneur</p>
-						<p class="bio">
-							“I’m a 3rd-year B.Tech Computer Science student specializing in Artificial Intelligence and Machine Learning. I build AI-powered apps, design creative digital experiences, and turn ideas into real-world products.”
+						<p>
+							I’m a 3rd-year B.Tech Computer Science student specializing in Artificial Intelligence and Machine Learning. I build AI-powered apps, design creative digital experiences, and turn ideas into real-world products.
 						</p>
-						<a href="/contact" class="button">Get In Touch</a>
+						<a href="/contact" class="btn">Get In Touch</a>
 					</div>
 					<div class="hero-image">
-						<!-- IMPORTANT: Place your profile photo in /public/images/profile.jpg -->
-						<img src="/images/profile.jpg" alt="Abhinav R" onerror="this.onerror=null;this.src='https://placehold.co/400x400/1e2sd93b/f1f5f9?text=AR';">
+						<!-- IMPORTANT: Make sure your profile photo is at /public/images/profile.jpg -->
+						<img src="/images/profile.jpg" alt="Abhinav R" onerror="this.onerror=null;this.src='https://placehold.co/300x300/1e293b/a78bfa?text=AR';">
 					</div>
 				</div>
 			</div>
 		</section>
 
 		<!-- Recent Projects Section -->
-		<!-- Removed 'alt-bg' class to make background transparent -->
-		<section>
+		<section class="home-section">
 			<div class="container">
-				<div class="section-content">
-					<h2>Recent Projects</h2>
-					<p>Here's a glimpse of what I've been working on. These projects showcase my skills in AI, web development, and design. Check out the full list for more details.</p>
-					<a href="/projects" class="button">View All Projects</a>
-				</div>
+				<h2>Recent Projects</h2>
+				<p>Here's a glimpse of what I've been working on. These projects showcase my skills in AI, web development, and design. Check out the full list for more details.</p>
+				<a href="/projects" class="btn btn-secondary">View All Projects</a>
 			</div>
 		</section>
 
 		<!-- Design Portfolio Section -->
-		<!-- Removed 'alt-bg' class to make background transparent -->
-		<section>
+		<section class="home-section">
 			<div class="container">
-				<div class="section-content">
-					<h2>Design Portfolio</h2>
-					<p>Beyond code, I have a passion for design. This section highlights some of my creative work, from UI/UX mockups to branding concepts.</p>
-					<a href="/portfolio" class="button">Explore Portfolio</a>
-				</div>
+				<h2>Design Portfolio</h2>
+				<p>Beyond code, I have a passion for design. This section highlights some of my creative work, from UI/UX mockups to branding concepts.</p>
+				<a href="/portfolio" class="btn btn-secondary">Explore Portfolio</a>
 			</div>
 		</section>
-
 	</main>
 </Layout>
 
