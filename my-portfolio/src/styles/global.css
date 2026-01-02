@@ -1,94 +1,227 @@
 /* src/styles/global.css */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
 
+/* === Root Variables === */
 :root {
-	--accent-color: #6400b1; /* Blue 500 */
-	--accent-color-hover: #6400b1; /* Blue 400 */
-
-	--surface-color: #1e293b; /* Lighter Slate */
-	--surface-color-rgb: 30, 41, 59; /* RGB version for transparency */
-	--border-color: #334155; /* Slate 700 */
-
-	--text-primary: #f1f5f9; /* Slate 100 */
-	--text-secondary: #cbd5e1; /* Slate 300 */
-
-	--header-height: 70px;
-}
-
-/* Base styles */
-body {
-	/* New Radial Gradient Background */
-	background-color: #0c0a09; /* Very dark base color */
-	background-image: 
-		radial-gradient(at 80% 20%, hsla(262, 72%, 50%, 0.3) 0px, transparent 50%),
-		radial-gradient(at 20% 90%, hsla(262, 80%, 35%, 0.2) 0px, transparent 50%),
-		radial-gradient(at 15% 15%, hsla(262, 80%, 45%, 0.4) 0px, transparent 50%);
-	background-attachment: fixed;
-	background-size: cover;
+	--font-primary: 'Inter', sans-serif;
 	
-	color: var(--text-secondary);
-	font-family: 'Inter', sans-serif;
-	line-height: 1.6;
+	/* --- COLORS --- */
+	/* You can define your main colors here */
+	--color-primary: rgb(139, 92, 246); /* This is the main violet color for buttons */
+	--color-primary-dark: rgb(124, 58, 237); /* This is the hover color */
+
+	--text-primary: rgb(241, 245, 249);
+	--text-secondary: rgb(203, 213, 225);
+	
+	/* This is the new gradient background */
+	--bg-gradient: 
+		radial-gradient(at 0% 0%, rgba(154, 127, 250, 0.15) 0px, transparent 50%),
+		radial-gradient(at 100% 0%, rgba(154, 127, 250, 0.15) 0px, transparent 50%),
+		radial-gradient(at 0% 100%, rgba(154, 127, 250, 0.1) 0px, transparent 50%),
+		radial-gradient(at 100% 100%, rgba(154, 127, 250, 0.1) 0px, transparent 50%),
+		rgb(15, 23, 42); /* Fallback solid color */
+	
+	/* Semi-transparent surface for glassmorphism */
+	--surface-bg: rgba(30, 41, 59, 0.5);
+	--surface-border: rgba(51, 65, 85, 0.7);
+}
+
+/* === Global Reset === */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
 	margin: 0;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+	padding: 0;
 }
 
+html {
+	font-family: var(--font-primary);
+	scroll-behavior: smooth;
+	background-color: rgb(15, 23, 42); /* Base background */
+}
+
+body {
+	color: var(--text-primary);
+	line-height: 1.6;
+	background: var(--bg-gradient); /* Apply the gradient to the body */
+	background-attachment: fixed; /* Makes the gradient stay in place on scroll */
+	min-height: 100vh;
+	font-size: 16px;
+	overflow-x: hidden; /* Prevent horizontal scroll */
+
+	/* Hide default cursor */
+	cursor: none;
+}
+
+/* === Animated Background Bubbles === */
+.bubbles {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	overflow: hidden;
+}
+
+.bubble {
+	position: absolute;
+	list-style: none;
+	display: block;
+	width: 20px;
+	height: 20px;
+	background: rgba(167, 139, 250, 0.1); /* Violet bubble color */
+	border-radius: 50%;
+	bottom: -150px;
+	animation: bubble-anim 25s linear infinite;
+}
+
+/* Different sizes and positions for bubbles */
+.bubble:nth-child(1) { left: 25%; width: 80px; height: 80px; animation-delay: 0s; }
+.bubble:nth-child(2) { left: 10%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 12s; }
+.bubble:nth-child(3) { left: 70%; width: 20px; height: 20px; animation-delay: 4s; }
+.bubble:nth-child(4) { left: 40%; width: 60px; height: 60px; animation-delay: 0s; animation-duration: 18s; }
+.bubble:nth-child(5) { left: 65%; width: 20px; height: 20px; animation-delay: 0s; }
+.bubble:nth-child(6) { left: 75%; width: 110px; height: 110px; animation-delay: 3s; background: rgba(167, 139, 250, 0.05); }
+.bubble:nth-child(7) { left: 35%; width: 150px; height: 150px; animation-delay: 7s; background: rgba(167, 139, 250, 0.08); }
+.bubble:nth-child(8) { left: 50%; width: 25px; height: 25px; animation-delay: 15s; animation-duration: 45s; }
+.bubble:nth-child(9) { left: 20%; width: 15px; height: 15px; animation-delay: 2s; animation-duration: 35s; }
+.bubble:nth-child(10) { left: 85%; width: 150px; height: 150px; animation-delay: 0s; animation-duration: 11s; background: rgba(167, 139, 250, 0.05); }
+
+@keyframes bubble-anim {
+	0% {
+		transform: translateY(0) scale(1) rotate(0deg);
+		opacity: 1;
+	}
+	100% {
+		transform: translateY(-100vh) scale(0.5) rotate(360deg);
+		opacity: 0;
+	}
+}
+
+
+/* === Typography === */
 h1, h2, h3, h4, h5, h6 {
-    color: var(--text-primary);
-    line-height: 1.2;
+	line-height: 1.2;
+	color: var(--text-primary);
+	font-weight: 700;
 }
-h1 { font-size: 2.8rem; }
+h1 { font-size: 2.5rem; }
 h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
 
+p {
+	margin-bottom: 1rem;
+	color: var(--text-secondary);
+}
 a {
-    color: var(--accent-color);
-    text-decoration: none;
-    transition: color 0.2s ease;
+	color: var(--color-primary);
+	text-decoration: none;
+}
+img {
+	max-width: 100%;
+	height: auto;
+	display: block;
 }
 
-a:hover {
-    color: var(--accent-color-hover);
-}
-
+/* === Layout === */
 .container {
+	width: 90%;
 	max-width: 1100px;
 	margin: 0 auto;
-	padding: 0 1.5rem;
+	padding: 2rem 0;
 }
 
 section {
 	padding: 3rem 0;
 }
 
-/* This class is no longer needed for section backgrounds but can be used for cards or other elements */
-.alt-bg {
-	background-color: rgba(var(--surface-color-rgb), 0.7); 
-	border: 1px solid var(--border-color);
-    border-radius: 12px;
+@media (min-width: 768px) {
+	section {
+		padding: 5rem 0;
+	}
+	h1 { font-size: 3rem; }
+	h2 { font-size: 2.5rem; }
 }
 
-.button {
-    display: inline-block;
-    background-color: var(--accent-color);
-    color: var(--text-primary);
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
-    font-weight: 600;
-    transition: background-color 0.2s ease, transform 0.2s ease;
+
+/* === Button Styles === */
+/*
+ *
+ * THIS IS THE SECTION YOU NEED TO EDIT FOR THE BUTTON COLOR
+ *
+ */
+.btn {
+	display: inline-block;
+	padding: 0.75rem 1.5rem;
+	border-radius: 8px;
+	text-decoration: none;
+	font-weight: 600;
+	transition: all 0.3s ease;
+	border: none;
+	
+	/* CHANGE THIS VALUE to change the button's background color */
+	background-color: var(--color-primary); /* e.g., change to rgb(255, 0, 0) for red */
+	
+	/* CHANGE THIS VALUE to change the button's text color */
+	color: rgb(255, 255, 255); /* e.g., change to rgb(0, 0, 0) for black */
 }
 
-.button:hover {
-    background-color: var(--accent-color-hover);
-    color: var(--text-primary);
-    transform: translateY(-2px);
+.btn:hover {
+	/* CHANGE THIS VALUE for the hover background color */
+	background-color: var(--color-primary-dark);
+	transform: translateY(-2px);
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-@media(min-width: 768px) {
-    section {
-        padding: 4rem 0;
-    }
-    h1 { font-size: 3.5rem; }
-    h2 { font-size: 2.5rem; }
+/* Secondary button style (like "View All Projects") */
+.btn-secondary {
+	background-color: rgba(51, 65, 85, 0.7);
+	color: var(--text-secondary);
+	border: 1px solid var(--surface-border);
+}
+.btn-secondary:hover {
+	background-color: rgba(71, 85, 105, 0.9);
+}
+
+
+/* === Custom Cursor === */
+.cursor-dot {
+	position: fixed;
+	width: 8px;
+	height: 8px;
+	background-color: rgb(241, 245, 249);
+	border-radius: 50%;
+	left: 0;
+	top: 0;
+	transform: translate(-50%, -50%);
+	pointer-events: none;
+	z-index: 9999;
+	transition: width 0.3s, height 0.3s;
+}
+.cursor-outline {
+	position: fixed;
+	width: 30px;
+	height: 30px;
+	border: 2px solid rgb(241, 245, 249);
+	opacity: 0.5;
+	border-radius: 50%;
+	left: 0;
+	top: 0;
+	transform: translate(-50%, -50%);
+	pointer-events: none;
+	z-index: 9998;
+	transition: width 0.3s, height 0.3s, opacity 0.3s;
+}
+
+/* Cursor hover effect */
+body[data-hover="true"] .cursor-dot {
+	width: 12px;
+	height: 12px;
+}
+body[data-hover="true"] .cursor-outline {
+	width: 40px;
+	height: 40px;
+	opacity: 0.8;
 }
 

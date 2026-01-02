@@ -15,24 +15,24 @@ export const projects = [
     codeLink: 'https://github.com/abhinavr-19/webp-converter', // Replace with your code link
   },
   {
-    slug: 'e-commerce-recommendation-engine',
-    title: 'E-commerce Recommendation Engine',
-    shortDescription: 'A machine learning model that provides personalized product recommendations based on user behavior and purchase history.',
-    longDescription: 'Developed as a core feature for a mock e-commerce platform, this recommendation engine uses collaborative filtering algorithms to predict user preferences. The model was trained on a large dataset of user interactions and can suggest relevant products in real-time, aiming to increase user engagement and sales.',
-    image: '/images/project-2.jpg',
-    tags: ['Machine Learning', 'Python', 'React', 'Node.js', 'Pandas'],
-    liveLink: '#', // Replace with your live link
-    codeLink: '#', // Replace with your code link
+    slug: 'review-refiner',
+    title: 'Review Refiner',
+    shortDescription: 'An AI-powered tool that instantly corrects grammar, fixes spelling, and improves the clarity of your reviews in a single click.',
+    longDescription: 'Review Refiner is a smart web application designed to help you write better, more effective reviews. Simply paste your draft, and our AI will instantly correct any grammar mistakes, fix spelling errors, and rephrase sentences for improved clarity and tone. Whether you\'re writing a product review, a service testimonial, or professional feedback, Review Refiner ensures your message is clear, professional, and impactful—all with a single click.',
+    image: '/images/project-2.webp',
+    tags: ['Next.js', 'React', 'TypeScript', 'CSS'],
+    liveLink: 'https://studio--studio-4339710488-511c4.us-central1.hosted.app/', // Replace with your live link
+    codeLink: 'https://github.com/abhinavr-19/Review-Refiner', // Replace with your code link
   },
   {
-    slug: 'portfolio-website-v1',
-    title: 'Portfolio Website V1',
-    shortDescription: 'My first personal portfolio website built with vanilla HTML, CSS, and JavaScript to showcase my early projects.',
-    longDescription: 'This was one of my foundational projects, where I focused on mastering the fundamentals of web development. The goal was to create a clean, responsive, and performant single-page application from scratch without relying on any frameworks. It taught me invaluable lessons about CSS layouts, DOM manipulation, and web accessibility.',
+    slug: 'ico-converter',
+    title: 'ICO Converter',
+    shortDescription: 'A simple web application for converting images to the ICO format.',
+    longDescription: 'The ICO Converter is a straightforward tool designed for web developers and designers who need to create favicon.ico files from existing images. The application supports various input formats and provides a seamless user experience, allowing users to upload an image and download the converted ICO file instantly.',
     image: '/images/project-3.jpg',
     tags: ['HTML', 'CSS', 'JavaScript'],
-    liveLink: '#', // Replace with your live link
-    codeLink: '#', // Replace with your code link
+    liveLink: 'https://ico-converter.vercel.app/', // Replace with your live link
+    codeLink: 'https://github.com/abhinavr-19/ico-converter', // Replace with your code link
   },
   // Add your next project here!
 ];
