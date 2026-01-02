@@ -29,7 +29,7 @@ export const projects = [
     title: 'ICO Converter',
     shortDescription: 'A simple web application for converting images to the ICO format.',
     longDescription: 'The ICO Converter is a straightforward tool designed for web developers and designers who need to create favicon.ico files from existing images. The application supports various input formats and provides a seamless user experience, allowing users to upload an image and download the converted ICO file instantly.',
-    image: '/images/project-3.jpg',
+    image: '/images/project-3.webp',
     tags: ['HTML', 'CSS', 'JavaScript'],
     liveLink: 'https://ico-converter.vercel.app/', // Replace with your live link
     codeLink: 'https://github.com/abhinavr-19/ico-converter', // Replace with your code link
